@@ -1,0 +1,25 @@
+:root {
+    --headerHeight: 4rem;
+    user-select: none;
+}
+
+.fz1r {
+    font-size: 1rem;
+}
+
+.fz1r2 {
+    font-size: 1.2rem;
+}
+
+.fz1r4 {
+    font-size: 1.4rem;
+}
+
+.fz1r5 {
+    font-size: 1.5rem;
+}
+
+/* hide */
+.hide {
+    display: none;
+}

@@ -1,0 +1,95 @@
+.wrap {
+    /* padding: 0px 0px 15px 0px; */
+    margin: 0px 10px;
+    animation: slidein 0.6s ease-out;
+}
+
+@keyframes slidein {
+    from {
+        transform: translateY(1000%);
+    }
+
+    to {
+        transform: translateY(0%);
+    }
+}
+
+.title:active {
+    opacity: 0.5;
+}
+.title {
+    padding: 7px;
+    margin: 10px;
+    border-radius: 3px;
+    text-align: center;
+
+    font-size: 1.1rem;
+    background-color: rgb(246, 250, 253);
+    border: 1px solid rgb(148, 145, 145);
+    border-radius: 3px;
+    box-shadow: 0px 2px 5px grey;
+}
+
+.content {
+    border-bottom: 1px solid rgb(220, 209, 209);
+    padding-bottom: 1rem;
+    padding-top: 0.3rem;
+}
+
+.description {
+    color: rgb(241, 66, 194);
+    font-style: italic;
+}
+
+.radioType {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.radioLabel {
+    padding: 0px 10px;
+    display: flex;
+    text-align: center;
+}
+
+.radioCheck {
+    padding: 0 60px;
+}
+/* typing */
+
+.typingType {
+    display: flex;
+    justify-content: flex-end;
+}
+.typingLabel {
+    display: flex;
+    flex-direction: column;
+    padding: 0 8px;
+}
+
+.typingCheck {
+    width: 3rem;
+    border: 1px solid #333;
+    font-size: 1.2rem;
+    color: red;
+}
+
+/* hide */
+.hide {
+    display: none;
+}
+
+/*  */
+.noteTitle {
+    margin: 0.3rem;
+    font-weight: 550;
+}
+
+.noteInput {
+    width: 100%;
+    margin-bottom: 0.3rem;
+    font-size: 1rem;
+    font-style: italic;
+    padding: 0.2rem;
+    color: rgb(172, 172, 10);
+}

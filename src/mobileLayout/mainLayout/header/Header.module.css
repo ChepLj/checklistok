@@ -1,0 +1,42 @@
+.header {
+    position: fixed;
+    background-color: #7969d9;
+    width: 100%;
+    height: var(--headerHeight);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+.headerMarginBottom {
+    width: 100%;
+    height: var(--headerHeight);
+}
+
+.title {
+    color: #ffadc7;
+    line-height: 1.4rem;
+}
+
+.headerWrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.time {
+    padding: 0 0.3rem;
+    color: antiquewhite;
+}
+
+.shift {
+    padding: 0 0.3rem;
+    color: aquamarine;
+}
+
+.button:active {
+    opacity: 0.3;
+    color: red;
+}
