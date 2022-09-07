@@ -27,7 +27,7 @@ export const Submit = () => {
             callBack={(value) => backToAreaBtn(value)}
          />
 
-         <EquipmentBtn title={state} />
+         <EquipmentBtn title={state} timeToday={location.state.timeStamp} />
       </>
    );
 };

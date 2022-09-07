@@ -1,19 +1,34 @@
-import { useRef } from 'react';
-import style from './EquipmentBtn.module.css';
+import { useEffect } from 'react';
 import {
    handelSubmitNote,
-   handelSubmitTypingType,
    handelSubmitRadioType,
+   handelSubmitTypingType,
 } from '../../handelComponents/createDataSubmit';
+import { getChildData } from '../../handelComponents/getChildData';
+import style from './EquipmentBtn.module.css';
 
-function EquipmentBtn({ title = '...' }) {
+function EquipmentBtn({ title = '...', timeToday = '' }) {
    let item = []; //tạo mảng để lưu Title (mới có thể dùng phương thức Map())
 
    for (const key in title) {
       //đưa các Title equipment vào mảng
       item.push(key);
    }
+
+   useEffect(() => {
+      // lấy trạng thái
+      getChildData(`Result/${timeToday}`)
+         .then((result) => {
+            if (result.val()) {
+               handelAddStatus(result.val());
+            }
+         })
+         .catch((error) => {
+            console.log(error);
+         });
+   }, [timeToday]);
    //render
+
    return item.map((crr, index) => {
       if (crr === 'level') return;
       return (
@@ -96,10 +111,11 @@ function RadioType({ dataInput, keyCrr }) {
                {dataInput.content.normal}
                <input
                   type="radio"
-                  className={style.radioCheck}
+                  className={`${style.radioCheck} fieldRadio`}
                   name={`${dataInput.doc}/${keyCrr}`}
                   data-doc-ref={dataInput.doc.replace('/Group', '')}
                   data-item-ref={keyCrr}
+                  data-text={'normal'}
                   onChange={(e) => {
                      handelSubmitRadioType(e.target, 'normal');
                   }}
@@ -109,10 +125,11 @@ function RadioType({ dataInput, keyCrr }) {
                {dataInput.content.issue}
                <input
                   type="radio"
-                  className={style.radioCheck}
+                  className={`${style.radioCheck} fieldRadio`}
                   name={`${dataInput.doc}/${keyCrr}`}
                   data-doc-ref={dataInput.doc.replace('/Group', '')}
                   data-item-ref={keyCrr}
+                  data-text={'issue'}
                   onChange={(e) => {
                      handelSubmitRadioType(e.target, 'issue');
                   }}
@@ -136,9 +153,10 @@ function TypingType({ dataInput, keyCrr }) {
                      {crr}
                      <input
                         type="number"
-                        className={style.typingCheck}
+                        className={`${style.typingCheck} fieldTyping`}
                         name={`${dataInput.doc}/${keyCrr}`}
                         data-doc-ref={dataInput.doc.replace('/Group', '')}
+                        data-crr={crr}
                         data-item-ref={keyCrr}
                         onChange={(e) => {
                            handelSubmitTypingType(e.target, crr);
@@ -158,7 +176,7 @@ function NoteType({ dataInput, index, keyCrr, keyParent }) {
       <div key={index} className={`${style.noteTitle} ${style.hide}`}>
          <h5 className={style.noteTitle}>{keyCrr}</h5>
          <input
-            className={style.noteInput}
+            className={`${style.noteInput} fieldNote`}
             type="text"
             placeholder={`Nhập ghi chú ( ${keyParent} )`}
             data-doc-ref={dataInput.doc.replace('/Group', '')}
@@ -169,4 +187,50 @@ function NoteType({ dataInput, index, keyCrr, keyParent }) {
          />
       </div>
    );
+}
+
+/////////////////////////// Add status
+
+function handelAddStatus(statusValue) {
+   const fieldRadioNode = document.querySelectorAll('.fieldRadio');
+   const fieldTypingNode = document.querySelectorAll('.fieldTyping');
+   const fieldNoteNode = document.querySelectorAll('.fieldNote');
+
+   //////////Radio
+   for (const item of fieldRadioNode) {
+      const docRef = item.dataset.docRef;
+      const itemRef = item.dataset.itemRef;
+      const textRef = item.dataset.text;
+      const ref = `${docRef}/${itemRef}/Check`.replaceAll('/', '-');
+      if (statusValue.hasOwnProperty(ref)) {
+         if (statusValue[ref] === 'normal' && textRef === 'normal') {
+            //////////
+            item.checked = true;
+         } else if (statusValue[ref] === 'issue' && textRef === 'issue') {
+            /////////
+            item.checked = true;
+         }
+      }
+   }
+
+   //////////Typing
+   for (const item of fieldTypingNode) {
+      const docRef = item.dataset.docRef;
+      const itemRef = item.dataset.itemRef;
+      const crr = item.dataset.crr;
+      const ref = `${docRef}/${itemRef}/${crr}`.replaceAll('/', '-');
+      if (statusValue.hasOwnProperty(ref)) {
+         item.value = statusValue[ref];
+      }
+   }
+
+   //////////Note
+   for (const item of fieldNoteNode) {
+      const docRef = item.dataset.docRef;
+      const itemRef = item.dataset.itemRef;
+      const ref = `${docRef}/${itemRef}/Note`.replaceAll('/', '-');
+      if (statusValue.hasOwnProperty(ref)) {
+         item.value = statusValue[ref];
+      }
+   }
 }
