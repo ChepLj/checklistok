@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import LeftSideModal from '../../../mobileComponents/Modal/LeftSideModal';
 import style from './Header.module.css';
 
@@ -9,13 +10,11 @@ function Header({ parentRef, time, menu, callBack }) {
       <>
          <header className={style.header}>
             {menu ? (
-               <div //menu
-                  className={`fa-solid fa-bars fz1r4 ${style.button}`}
-                  onClick={(e) => {
-                     /// show menu
-                     setLeftSideModalFlag(true);
-                  }}
-               ></div>
+               <Link
+                  className={`fa-solid fa-house fz1r4 ${style.button}`}
+                  to="/main"
+                  state={{ tes: 'ok' }}
+               ></Link>
             ) : (
                <div //Back
                   className={`fa-solid fa-arrow-left fz1r4 ${style.button}`}
@@ -30,12 +29,12 @@ function Header({ parentRef, time, menu, callBack }) {
 
             <div className={style.headerWrap}>
                {/* Title */}
-               <span className={style.title}>{title}</span>
+               <span className={style.titleLabel}>Bạn đang xem lại báo cáo</span>
                {/* Date and Shift */}
-               <div>
-                  <span className={style.time}>{time}</span>
-                  <span className={style.shift}>Ca D</span>
-               </div>
+
+               <span className={style.time}>Ngày {time}</span>
+
+               <span className={style.title}>{title}</span>
             </div>
             <div className={style.auth}>
                <img

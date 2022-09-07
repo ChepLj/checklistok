@@ -1,25 +1,31 @@
 :root {
-    --headerHeight: 4rem;
-    user-select: none;
+   --headerHeight: 4rem;
 }
 
+#root {
+   width: 100%;
+   height: 100vh;
+   max-width: 600px;
+
+   user-select: none;
+}
 .fz1r {
-    font-size: 1rem;
+   font-size: 1rem;
 }
 
 .fz1r2 {
-    font-size: 1.2rem;
+   font-size: 1.2rem;
 }
 
 .fz1r4 {
-    font-size: 1.4rem;
+   font-size: 1.4rem;
 }
 
 .fz1r5 {
-    font-size: 1.5rem;
+   font-size: 1.5rem;
 }
 
 /* hide */
 .hide {
-    display: none;
+   display: none;
 }
