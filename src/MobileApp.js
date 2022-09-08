@@ -10,7 +10,7 @@ import getServerTimeStamp from './handelComponents/getServerTimeStamp';
 function MobileApp() {
    const navigate = useNavigate();
    useEffect(() => {
-      navigate('/main');
+      // navigate('/main');
    }, []);
 
    return (

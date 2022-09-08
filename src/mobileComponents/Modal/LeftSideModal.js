@@ -21,54 +21,58 @@ export default function LeftSideModal({ callBackClose }) {
          });
    }, []);
    return (
-      <section className={style.modal}>
-         <div className={style.form}>
-            <div className={style.header}>
-               <div
-                  className={style.closeWarp}
-                  onClick={() => {
-                     callBackClose(false);
-                  }}
-               >
-                  <label>Đóng </label>
-                  <i className={`fa-solid fa-xmark ${style.closeBtn}`}></i>
+      <div className={style.warp}>
+         <section className={style.modal}>
+            <div className={style.form}>
+               <div className={style.header}>
+                  <div
+                     className={style.closeWarp}
+                     onClick={() => {
+                        callBackClose(false);
+                     }}
+                  >
+                     <label>Đóng </label>
+                     <i className={`fa-solid fa-xmark ${style.closeBtn}`}></i>
+                  </div>
+               </div>
+               <div className={style.body}>
+                  <div
+                     className={style.item}
+                     onClick={(e) => {
+                        //  e.target.querySelector(`.${style.list}`).classList.toggle(`${style.hide}`);
+                     }}
+                  >
+                     Xuất Báo Cáo
+                     {/* <ul className={style.list}>
+                        <li className={style.listItem}>2022-08-30</li>
+                        <li className={style.listItem}>2022-08-31</li>
+                     </ul> */}
+                  </div>
+                  <div
+                     className={style.item}
+                     onClick={(e) => {
+                        e.target.querySelector(`.${style.list}`) &&
+                           e.target
+                              .querySelector(`.${style.list}`)
+                              .classList.toggle(`${style.hide}`);
+                     }}
+                  >
+                     Xem Lại Báo Cáo
+                     <ul className={`${style.list} ${style.hide}`}>
+                        {state.map((crr, index) => {
+                           return (
+                              <li key={index} className={style.listItem}>
+                                 <Link className={style.button} state={{ ref: crr }} to="/logs">
+                                    {crr}
+                                 </Link>
+                              </li>
+                           );
+                        })}
+                     </ul>
+                  </div>
                </div>
             </div>
-            <div className={style.body}>
-               <div
-                  className={style.item}
-                  onClick={(e) => {
-                     //  e.target.querySelector(`.${style.list}`).classList.toggle(`${style.hide}`);
-                  }}
-               >
-                  Xuất Báo Cáo
-                  {/* <ul className={style.list}>
-                     <li className={style.listItem}>2022-08-30</li>
-                     <li className={style.listItem}>2022-08-31</li>
-                  </ul> */}
-               </div>
-               <div
-                  className={style.item}
-                  onClick={(e) => {
-                     e.target.querySelector(`.${style.list}`) &&
-                        e.target.querySelector(`.${style.list}`).classList.toggle(`${style.hide}`);
-                  }}
-               >
-                  Xem Lại Báo Cáo
-                  <ul className={`${style.list} ${style.hide}`}>
-                     {state.map((crr, index) => {
-                        return (
-                           <li key={index} className={style.listItem}>
-                              <Link className={style.button} state={{ ref: crr }} to="/logs">
-                                 {crr}
-                              </Link>
-                           </li>
-                        );
-                     })}
-                  </ul>
-               </div>
-            </div>
-         </div>
-      </section>
+         </section>
+      </div>
    );
 }

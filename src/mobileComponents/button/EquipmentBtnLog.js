@@ -205,7 +205,7 @@ function handelAddStatus(statusValue) {
       const docRef = item.dataset.docRef;
       const itemRef = item.dataset.itemRef;
       const textRef = item.dataset.text;
-      const ref = `${docRef}/${itemRef}/Check`.replaceAll('/', '-');
+      const ref = `${docRef}/${itemRef}/Check/Status`.replaceAll('/', '-');
       if (statusValue.hasOwnProperty(ref)) {
          if (statusValue[ref] === 'normal' && textRef === 'normal') {
             //////////

@@ -56,8 +56,8 @@ export function handelSubmitRadioType(e, status) {
 
    // -------------Phương Án 2 ------------------
    if (e.value) {
-      container[`${docRef}/${itemRef}/Check`] = status;
-      let temp = `${docRef}/${itemRef}/Check`.replaceAll('/', '-');
+      container[`${docRef}/${itemRef}/Check/Status`] = status;
+      let temp = `${docRef}/${itemRef}/Check/Status`.replaceAll('/', '-');
       container[temp] = status;
       console.log(container);
    }

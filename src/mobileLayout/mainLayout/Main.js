@@ -6,9 +6,13 @@ import getServerTimeStamp from '../../handelComponents/getServerTimeStamp';
 import { getChildData } from '../../handelComponents/getChildData';
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, Route, useLocation } from 'react-router-dom';
+import { auth } from '../../firebase/firebaseConfig';
 
 function MainMbLo() {
-   if (!true) {
+   const user = JSON.parse(sessionStorage.getItem('user'));
+   if (user) {
+      console.log(user);
+   } else {
       window.location.href = '/';
    }
    const [state, setState] = useState({});
@@ -85,6 +89,7 @@ function MainMbLo() {
                time={timeState}
                menu={state.level === 'Group'}
                callBack={(value) => setRef(value)}
+               photoURL={user.photoURL}
             />
             {(function (data) {
                if (data.level === 'Group')
