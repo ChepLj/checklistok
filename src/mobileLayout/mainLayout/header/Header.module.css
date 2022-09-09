@@ -43,8 +43,8 @@
 }
 
 .auth {
-   width: calc(var(--headerHeight) - 1.5rem);
-   height: calc(var(--headerHeight) - 1.5rem);
+   width: calc(var(--headerHeight) - 1.7rem);
+   height: calc(var(--headerHeight) - 1.7rem);
 }
 
 .avatar {

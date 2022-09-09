@@ -8,7 +8,10 @@ import Header from './header/Header';
 import style from './Logs.module.css';
 
 function Logs() {
-   if (!true) {
+   const user = JSON.parse(sessionStorage.getItem('user'));
+   if (user) {
+      console.log(user);
+   } else {
       window.location.href = '/';
    }
 

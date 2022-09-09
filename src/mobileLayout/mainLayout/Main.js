@@ -5,7 +5,7 @@ import AreaBtn from '../../mobileComponents/button/AreaBtn';
 import getServerTimeStamp from '../../handelComponents/getServerTimeStamp';
 import { getChildData } from '../../handelComponents/getChildData';
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate, Route, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { auth } from '../../firebase/firebaseConfig';
 
 function MainMbLo() {

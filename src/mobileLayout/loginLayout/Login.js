@@ -1,12 +1,26 @@
-import { signInWithPopup, signOut } from 'firebase/auth';
-import { useState } from 'react';
-import { auth, providerGG } from '../../firebase/firebaseConfig';
+import { signInWithPopup } from 'firebase/auth';
+import { auth, providerGG, providerFB } from '../../firebase/firebaseConfig';
 import style from './Login.module.css';
 
 export default function Login() {
-   const [state, setState] = useState();
    const handelLoginGG = () => {
       signInWithPopup(auth, providerGG)
+         .then((result) => {
+            console.log(result);
+
+            // The signed-in user info.
+            const user = result.user;
+            console.log(user);
+            // ...
+            // setState(JSON.stringify(user));
+            sessionStorage.setItem('user', JSON.stringify(user));
+            window.location.href = '/main';
+         })
+         .catch((error) => {});
+   };
+   /////////////////FaceBook
+   const handelLoginFB = () => {
+      signInWithPopup(auth, providerFB)
          .then((result) => {
             console.log(result);
 
@@ -43,7 +57,7 @@ export default function Login() {
             ></img>
             <p className={style.textProvider}>Đăng nhập với Google</p>
          </section>
-         <section className={style.poviderLogin}>
+         <section className={style.poviderLogin} onClick={handelLoginFB}>
             <img
                className={style.icon}
                src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Facebook_icon_2013.svg/640px-Facebook_icon_2013.svg.png"

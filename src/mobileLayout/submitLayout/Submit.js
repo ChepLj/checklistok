@@ -5,7 +5,10 @@ import Header from './header/Header';
 /*...*/
 
 export const Submit = () => {
-   if (!true) {
+   const user = JSON.parse(sessionStorage.getItem('user'));
+   if (user) {
+      console.log(user);
+   } else {
       window.location.href = '/';
    }
    let location = useLocation(); //dùng useLocation để lấy prop
