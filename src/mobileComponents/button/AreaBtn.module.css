@@ -1,65 +1,66 @@
 .mainWrap {
-    background-color: rgb(246, 250, 253);
-    border: 1px solid rgb(148, 145, 145);
-    border-radius: 5px;
-    box-shadow: 0px 2px 10px grey;
-    padding: 5px 5px;
-    margin: 10px 12px;
-    text-align: left;
-    position: relative;
-    user-select: none;
-    overflow: hidden;
-    animation: slidein 0.7s ease-out;
+   background-color: rgb(246, 250, 253);
+   border: 1px solid rgb(148, 145, 145);
+   border-radius: 5px;
+   box-shadow: 0px 2px 10px grey;
+   padding: 5px 5px;
+   margin: 10px 12px;
+   text-align: left;
+   position: relative;
+   user-select: none;
+   overflow: hidden;
+   animation: slidein 0.7s ease-out;
+   z-index: 1;
 }
 
 @keyframes slidein {
-    from {
-        transform: translateX(-100%);
-    }
+   from {
+      transform: translateX(-100%);
+   }
 
-    to {
-        transform: translateX(0%);
-    }
+   to {
+      transform: translateX(0%);
+   }
 }
 
 .mainWrap:active {
-    opacity: 0.5;
+   opacity: 0.5;
 }
 .percent {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 2%;
-    font-size: 1.4rem;
-    z-index: 3;
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   right: 2%;
+   font-size: 1.4rem;
+   z-index: 3;
 }
 
 .title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    line-height: 1.5rem;
-    z-index: 3;
-    position: relative;
+   font-size: 1.1rem;
+   font-weight: 600;
+   line-height: 1.5rem;
+   z-index: 3;
+   position: relative;
 }
 
 .content {
-    font-style: italic;
-    font-size: 0.8rem;
-    z-index: 3;
-    position: relative;
+   font-style: italic;
+   font-size: 0.8rem;
+   z-index: 3;
+   position: relative;
 }
 
 .percentEffect {
-    position: absolute;
-    width: var(--percent, 0%);
-    height: 100%;
-    background-color: var(--color, red);
-    opacity: 0.7;
-    top: 0%;
-    left: 0%;
-    z-index: 2;
-    transition-property: width;
-    transition-duration: 0.8s;
-    transition-timing-function: ease-out;
-    transition-delay: 0.5s;
+   position: absolute;
+   width: var(--percent, 0%);
+   height: 100%;
+   background-color: var(--color, red);
+   opacity: 0.7;
+   top: 0%;
+   left: 0%;
+   z-index: 2;
+   transition-property: width;
+   transition-duration: 0.8s;
+   transition-timing-function: ease-out;
+   transition-delay: 0.5s;
 }

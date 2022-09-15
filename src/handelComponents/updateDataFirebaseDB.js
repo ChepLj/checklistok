@@ -8,7 +8,7 @@ export default function updateDataFirebase(objectData, timeStamp = '22-08-31') {
       updates['Result/' + timeStamp + '/' + key] = objectData[key];
    }
 
-   console.log(updates);
+   // console.log(updates);
 
    return update(dbRT, updates);
 }

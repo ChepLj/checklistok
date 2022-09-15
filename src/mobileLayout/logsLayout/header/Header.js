@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import LeftSideModal from '../../../mobileComponents/Modal/LeftSideModal';
 import style from './Header.module.css';
 
-function Header({ parentRef, time, menu, callBack }) {
+function Header({ parentRef, time, menu, photoURL, callBack }) {
    const [leftSideModalFlag, setLeftSideModalFlag] = useState(false);
    const title = parentRef.length > 1 ? parentRef[parentRef.length - 1] : 'Bảo Trì Điện Lò Cao';
    return (
@@ -39,9 +39,7 @@ function Header({ parentRef, time, menu, callBack }) {
             <div className={style.auth}>
                <img
                   className={style.avatar}
-                  src={
-                     'https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg'
-                  }
+                  src={photoURL}
                   onClick={() => {
                      alert('chưa làm tới');
                   }}

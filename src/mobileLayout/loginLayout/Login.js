@@ -1,22 +1,42 @@
 import { signInWithPopup } from 'firebase/auth';
-import { auth, providerGG, providerFB } from '../../firebase/firebaseConfig';
+import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { auth, providerFB, providerGG } from '../../firebase/firebaseConfig';
 import style from './Login.module.css';
 
 export default function Login() {
+   const navigate = useNavigate();
+   const user = JSON.parse(sessionStorage.getItem('user'));
+   if (user) {
+      window.location.href = '/main';
+   }
+   const rememberRef = useRef();
+   let timeTemp = '';
+   function getLocalTime() {
+      const tempRaw = new Date();
+      const month = tempRaw.getMonth() + 1 < 10 ? `0${tempRaw.getMonth() + 1}` : tempRaw.getMonth();
+      const date = tempRaw.getDate() < 10 ? `0${tempRaw.getDate()}` : tempRaw.getDate();
+      timeTemp = `${tempRaw.getFullYear()}-${month}-${date}`;
+   }
+   getLocalTime();
+
    const handelLoginGG = () => {
       signInWithPopup(auth, providerGG)
          .then((result) => {
-            console.log(result);
-
-            // The signed-in user info.
             const user = result.user;
-            console.log(user);
-            // ...
-            // setState(JSON.stringify(user));
+
             sessionStorage.setItem('user', JSON.stringify(user));
-            window.location.href = '/main';
+            if (rememberRef.current.checked) {
+               localStorage.setItem(`user-${timeTemp}`, JSON.stringify(user));
+               window.location.href = '/main';
+            } else {
+               // localStorage.clear(); ///CHU Y sẽ xóa sach dữ liệu
+               window.location.href = '/main';
+            }
          })
-         .catch((error) => {});
+         .catch((error) => {
+            alert(error);
+         });
    };
    /////////////////FaceBook
    const handelLoginFB = () => {
@@ -32,9 +52,24 @@ export default function Login() {
             sessionStorage.setItem('user', JSON.stringify(user));
             window.location.href = '/main';
          })
-         .catch((error) => {});
+         .catch((error) => {
+            alert(error);
+         });
    };
-
+   /////////
+   useEffect(() => {
+      const user = localStorage.getItem(`user-${timeTemp}`);
+      if (user) {
+         // console.log(user);
+         navigate('/main', {
+            state: {
+               user: user,
+               timeStamp: timeTemp,
+            },
+         });
+      }
+   });
+   /////////////
    return (
       <section className={style.warp}>
          <img
@@ -65,6 +100,17 @@ export default function Login() {
             ></img>
             <p className={style.textProvider}>Đăng nhập với Facebook</p>
          </section>
+         <div className={style.rememberWarp}>
+            <input
+               className={style.rememberInput}
+               id="remember"
+               type="checkbox"
+               ref={rememberRef}
+            />
+            <label className={style.rememberLabel} htmlFor="remember">
+               ghi nhớ đăng nhập ngày hôm nay.
+            </label>
+         </div>
       </section>
    );
 }

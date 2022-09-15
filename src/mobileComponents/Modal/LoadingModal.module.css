@@ -1,0 +1,33 @@
+.modal {
+   position: absolute;
+   background: rgba(0, 0, 0, 0.4);
+   width: 100%;
+   left: 0;
+   right: 0;
+   top: 0;
+   bottom: 0;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   z-index: 5;
+}
+
+.loader {
+   border: 0.7rem solid #f3f3f3; /* Light grey */
+   border-top: 0.7rem solid #79c0f0; /* Blue */
+   border-right: 0.7rem solid rgb(87, 224, 87);
+   border-bottom: 0.7rem solid rgb(251, 134, 134);
+   border-radius: 50%;
+   width: 6rem;
+   height: 6rem;
+   animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+   0% {
+      transform: rotate(0deg);
+   }
+   100% {
+      transform: rotate(360deg);
+   }
+}

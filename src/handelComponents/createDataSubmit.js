@@ -1,11 +1,15 @@
 //////////////////
 
+import { CONSTANTS } from '@firebase/util';
+
 export const container = {}; // object lưu giá trị update
 export const container2 = {}; // object lưu giá trị update kieu 2
 
 export function handelSubmitTypingType(e, label) {
    const docRef = e.dataset.docRef;
    const itemRef = e.dataset.itemRef;
+   const warn = e.dataset.conditionWarn;
+   const error = e.dataset.conditionError;
    const value = e.value;
 
    // -------------Phương Án 1 ------------------
@@ -23,14 +27,23 @@ export function handelSubmitTypingType(e, label) {
    // temp[label] = value;
 
    // -------------Phương Án 2 ------------------
-
    container[`${docRef}/${itemRef}/Status`] = 'normal';
+
+   if (Number(value) > Number(warn)) {
+      container[`${docRef}/${itemRef}/Status`] = 'warn';
+      console.log('warn');
+   }
+   if (Number(value) > Number(error)) {
+      container[`${docRef}/${itemRef}/Status`] = 'error';
+      console.log('error');
+   }
+
    container[`${docRef}/${itemRef}/${label}`] = value;
    let temp = `${docRef}/${itemRef}/Status`.replaceAll('/', '-');
    let temp2 = `${docRef}/${itemRef}/${label}`.replaceAll('/', '-');
    container[temp] = 'normal';
    container[temp2] = value;
-   console.log(container);
+   // console.log(container);
 }
 ///////
 export function handelSubmitRadioType(e, status) {
@@ -59,7 +72,7 @@ export function handelSubmitRadioType(e, status) {
       container[`${docRef}/${itemRef}/Check/Status`] = status;
       let temp = `${docRef}/${itemRef}/Check/Status`.replaceAll('/', '-');
       container[temp] = status;
-      console.log(container);
+      // console.log(container);
    }
 }
 
@@ -90,5 +103,5 @@ export function handelSubmitNote(e) {
    let temp = `${docRef}/${itemRef}/Note`.replaceAll('/', '-');
    container[temp] = value;
    console.log(temp);
-   console.log(container);
+   // console.log(container);
 }

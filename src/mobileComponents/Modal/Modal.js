@@ -1,24 +1,16 @@
 import { useState } from 'react';
 import style from './Modal.module.css';
-
+import { Link } from 'react-router-dom';
 import { container } from '../../handelComponents/createDataSubmit';
 import updateDataFirebase from '../../handelComponents/updateDataFirebaseDB';
 import getServerTimeStamp from '../../handelComponents/getServerTimeStamp';
 
-export default function Modal({
-   header,
-   content,
-   uploadBtn,
-   cancelBtn,
-   callBackCancel,
-   callBackActive,
-}) {
+export default function Modal({ callBackCancel }) {
    const [state, setState] = useState('prepareUpload');
    const total = Object.keys(container).length;
    // console.log('render');
    return (
       <>
-         {/* <ModalUploading callBackCancel={callBackCancel} setState={setState} /> */}
          {(function () {
             switch (state) {
                case 'prepareUpload': {
@@ -151,14 +143,15 @@ function ModalUploadDone({ callBackCancel, setState, state, total }) {
             </div>
             <ul className={style.list}>{state}</ul>
             <footer className={style.footer}>
-               <button
+               <Link
+                  to="/main"
                   className={`${style.button} ${style.active} ${style.disabled}`}
-                  onClick={() => {
-                     window.location.href = '/main';
-                  }}
+                  // onClick={() => {
+                  //    window.location.href = '/main';
+                  // }}
                >
                   Xong, Về trang chủ
-               </button>
+               </Link>
             </footer>
          </div>
       </section>

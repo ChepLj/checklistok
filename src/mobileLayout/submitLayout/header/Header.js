@@ -33,7 +33,7 @@ function Header({ parentRef, timeStamp, callBack }) {
                {/* Date and Shift */}
                <div>
                   <span className={style.time}>{timeStamp}</span>
-                  <span className={style.shift}>Ca D</span>
+                  <span className={style.shift}>Ca ...</span>
                </div>
             </div>
             <div className={style.uploadWrap}>

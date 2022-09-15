@@ -10,7 +10,7 @@ import style from './Logs.module.css';
 function Logs() {
    const user = JSON.parse(sessionStorage.getItem('user'));
    if (user) {
-      console.log(user);
+      // console.log(user);
    } else {
       window.location.href = '/';
    }
@@ -36,6 +36,7 @@ function Logs() {
                parentRef={[...ref]}
                time={location.state.ref}
                menu={state.level === 'Group'}
+               photoURL={user.photoURL}
                callBack={(value) => setRef(value)}
             />
             {(function (data) {

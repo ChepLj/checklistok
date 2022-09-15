@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
-import { dbRT } from '../../firebase/firebaseConfig';
 import { getChildData } from '../../handelComponents/getChildData';
 import style from './GroupBtn.module.css';
 
 function GroupBtn({ title = 'Khu Vực ...', parentRef = [], timeToday = '', callBack }) {
    const [status, setStatus] = useState({});
    let item = [];
-
    for (const key in title) {
       item.push(key);
    }
@@ -23,7 +21,7 @@ function GroupBtn({ title = 'Khu Vực ...', parentRef = [], timeToday = '', cal
             console.log(error);
          });
    }, [timeToday]);
-   console.log(parentRef);
+   // console.log(parentRef);
    return item.map((crr, index) => {
       if (crr === 'level') return;
       return (

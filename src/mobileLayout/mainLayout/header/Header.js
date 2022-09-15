@@ -34,7 +34,7 @@ function Header({ parentRef, time, menu, photoURL, callBack }) {
                {/* Date and Shift */}
                <div>
                   <span className={style.time}>{time}</span>
-                  <span className={style.shift}>Ca D</span>
+                  <span className={style.shift}>Ca ...</span>
                </div>
             </div>
             <div className={style.auth}>

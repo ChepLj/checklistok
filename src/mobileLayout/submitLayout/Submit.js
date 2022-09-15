@@ -7,7 +7,7 @@ import Header from './header/Header';
 export const Submit = () => {
    const user = JSON.parse(sessionStorage.getItem('user'));
    if (user) {
-      console.log(user);
+      // console.log(user);
    } else {
       window.location.href = '/';
    }

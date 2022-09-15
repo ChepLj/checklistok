@@ -101,7 +101,8 @@ function handelHide(e) {
 
 // RadioType
 function RadioType({ dataInput, keyCrr }) {
-   console.log(dataInput.doc.replace('/Group', ''));
+   // console.log(dataInput.doc.replace('/Group', ''));
+
    return (
       <div className={`${style.content} ${style.hide}`} key={keyCrr}>
          <span className={style.description}>{keyCrr}</span>
@@ -143,6 +144,14 @@ function RadioType({ dataInput, keyCrr }) {
 // TypingType
 
 function TypingType({ dataInput, keyCrr }) {
+   let conditionWarn = '';
+   let conditionError = '';
+   if (dataInput.condition) {
+      conditionWarn = dataInput.condition.warn;
+   }
+   if (dataInput.condition) {
+      conditionError = dataInput.condition.error;
+   }
    return (
       <div className={`${style.content} ${style.hide}`} key={keyCrr}>
          <span className={style.description}>{keyCrr}</span>
@@ -158,6 +167,8 @@ function TypingType({ dataInput, keyCrr }) {
                         data-doc-ref={dataInput.doc.replace('/Group', '')}
                         data-crr={crr}
                         data-item-ref={keyCrr}
+                        data-condition-warn={conditionWarn}
+                        data-condition-error={conditionError}
                         onChange={(e) => {
                            handelSubmitTypingType(e.target, crr);
                         }}
