@@ -132,6 +132,9 @@ function ModalUploading({ callBackCancel, setState, state, total }) {
 
 //////////////////////////////////////
 function ModalUploadDone({ callBackCancel, setState, state, total }) {
+   for (const key in container) {
+      delete container[key];
+   }
    return (
       <section className={style.modal}>
          <div className={style.form}>

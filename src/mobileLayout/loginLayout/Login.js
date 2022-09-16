@@ -5,6 +5,8 @@ import { auth, providerFB, providerGG } from '../../firebase/firebaseConfig';
 import style from './Login.module.css';
 
 export default function Login() {
+   const msnvRef = useRef(0);
+   const passRef = useRef('');
    const navigate = useNavigate();
    const user = JSON.parse(sessionStorage.getItem('user'));
    if (user) {
@@ -69,6 +71,18 @@ export default function Login() {
          });
       }
    });
+   ////////// Login With MSNV////////
+   const loginWithMSNV = () => {
+      if (passRef.current.value === '1131') {
+         const user = {};
+         user.displayName = 'Admin';
+         user.photoURL =
+            'https://thumbs.dreamstime.com/b/admin-stamp-seal-watermark-distress-style-blue-vector-rubber-print-admin-title-scratched-texture-grunge-textured-133645421.jpg';
+         user.email = '';
+         sessionStorage.setItem('user', JSON.stringify(user));
+         window.location.href = '/main';
+      }
+   };
    /////////////
    return (
       <section className={style.warp}>
@@ -80,9 +94,16 @@ export default function Login() {
          <div className={style.titleWarp}>
             <span className={style.title}>Đăng nhập bằng MSNV</span>
          </div>
-         <input type="number" className={style.input} placeholder="Nhập msnv"></input>
-         <input type="text" className={style.input} placeholder="Nhập password"></input>
-         <button className={style.loginBtn}>Đăng Nhập</button>
+         <input ref={msnvRef} type="number" className={style.input} placeholder="Nhập msnv"></input>
+         <input
+            ref={passRef}
+            type="text"
+            className={style.input}
+            placeholder="Nhập password"
+         ></input>
+         <button className={style.loginBtn} onClick={loginWithMSNV}>
+            Đăng Nhập
+         </button>
          <p className={style.text}>---------- hoặc ----------</p>
          <section className={style.poviderLogin} onClick={handelLoginGG}>
             <img

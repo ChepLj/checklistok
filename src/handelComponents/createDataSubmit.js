@@ -29,11 +29,11 @@ export function handelSubmitTypingType(e, label) {
    // -------------Phương Án 2 ------------------
    container[`${docRef}/${itemRef}/Status`] = 'normal';
 
-   if (Number(value) > Number(warn)) {
+   if (Number(warn) > 0 && Number(value) > Number(warn)) {
       container[`${docRef}/${itemRef}/Status`] = 'warn';
       console.log('warn');
    }
-   if (Number(value) > Number(error)) {
+   if (Number(error) > 0 && Number(value) > Number(error)) {
       container[`${docRef}/${itemRef}/Status`] = 'error';
       console.log('error');
    }

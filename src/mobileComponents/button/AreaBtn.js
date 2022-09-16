@@ -106,7 +106,7 @@ function handelPercent(percent, crr) {
       if (node.dataset.ref === crr) {
          const element = node.style;
 
-         if (percent > 70) {
+         if (percent > 90) {
             element.setProperty('--percent', percent + '%');
             element.setProperty('--color', 'lime');
          } else if (percent < 30) {
