@@ -6,11 +6,11 @@ import Header from './header/Header';
 
 export const Submit = () => {
    const user = JSON.parse(sessionStorage.getItem('user'));
-   if (user) {
-      // console.log(user);
-   } else {
-      window.location.href = '/';
-   }
+   // if (user) {
+   //    // console.log(user);
+   // } else {
+   //    window.location.href = '/';
+   // }
    let location = useLocation(); //dùng useLocation để lấy prop
    const state = location.state.title;
    const refDoc = location.state.refDoc;
@@ -29,8 +29,11 @@ export const Submit = () => {
             timeStamp={timeStamp}
             callBack={(value) => backToAreaBtn(value)}
          />
-
-         <EquipmentBtn title={state} timeToday={location.state.timeStamp} />
+         {user ? (
+            <EquipmentBtn title={state} timeToday={location.state.timeStamp} />
+         ) : (
+            <h3>Không có thông tin User. Vui lòng quay lại trang chủ !</h3>
+         )}
       </>
    );
 };

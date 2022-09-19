@@ -91,6 +91,7 @@ function MainMbLo() {
          });
    }, []);
    // console.log('render', state);
+   console.log(user);
    return (
       <>
          <div className={style.app}>
@@ -100,6 +101,9 @@ function MainMbLo() {
                   time={timeState}
                   menu={state.level === 'Group'}
                   callBack={(value) => setRef(value)}
+                  userName={user.displayName}
+                  email={user.email}
+                  provider={user.providerData[0].providerId}
                   photoURL={user.photoURL}
                />
                {(function (data) {

@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import InfoModal from '../../../mobileComponents/Modal/InfoModal';
 import LeftSideModal from '../../../mobileComponents/Modal/LeftSideModal';
 import style from './Header.module.css';
 
-function Header({ parentRef, time, menu, photoURL, callBack }) {
+function Header({ parentRef, time, menu, userName, email, provider, photoURL, callBack }) {
    const [leftSideModalFlag, setLeftSideModalFlag] = useState(false);
+   const [infoModalFlag, setInfoModalFlag] = useState(false);
    const title = parentRef.length > 1 ? parentRef[parentRef.length - 1] : 'Bảo Trì Điện Lò Cao';
    return (
       <>
@@ -42,17 +44,30 @@ function Header({ parentRef, time, menu, photoURL, callBack }) {
                   className={style.avatar}
                   src={photoURL}
                   onClick={() => {
-                     alert('chưa làm tới');
+                     setInfoModalFlag(true);
                   }}
+                  alt=""
                ></img>
             </div>
          </header>
          <div className={style.headerMarginBottom}></div>
-         {/* Modal display */}
+         {/* Modal leftSide display */}
          {leftSideModalFlag && (
             <LeftSideModal
                callBackClose={(value) => {
                   setLeftSideModalFlag(value);
+               }}
+            />
+         )}
+         {/* Modal Info display */}
+         {infoModalFlag && (
+            <InfoModal
+               userName={userName}
+               email={email}
+               provider={provider}
+               time={time}
+               callBackClose={(value) => {
+                  setInfoModalFlag(false);
                }}
             />
          )}

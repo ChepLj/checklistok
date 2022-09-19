@@ -79,6 +79,7 @@ export default function Login() {
          user.photoURL =
             'https://thumbs.dreamstime.com/b/admin-stamp-seal-watermark-distress-style-blue-vector-rubber-print-admin-title-scratched-texture-grunge-textured-133645421.jpg';
          user.email = '';
+         user.providerData = [{ providerId: 'Mã số nhân viên' }];
          sessionStorage.setItem('user', JSON.stringify(user));
          window.location.href = '/main';
       }
